@@ -1,9 +1,9 @@
 **Assumptions**: This tutorial assumes that the local development environment is Windows 7+ and is a traditional "locked down" corporate environment.
 
 # Local Development Environment Pre-requisites
-1. ### Obtain administrator credentials / elevated privileges
+### 1.  Obtain administrator credentials / elevated privileges
 Obtain elevated priveleges / firecall credentials for your machine.
-1. ### Install / Upgrade NodeJS  and npm
+### 1.  Install / Upgrade NodeJS  and npm
 Note: This step could be skipped if NodeJS / npm are already present and meet minimum version requirements (see next section)
   1. Download and run the most current LTS NodeJS Windows Installation msi @ https://nodejs.org/en/download/
   1. Accept UELA, and continue through the installation with the default settings
