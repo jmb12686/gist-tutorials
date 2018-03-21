@@ -276,7 +276,13 @@ In Powershell, the 'curl' command is by default aliased to the 'Invoke-WebReques
 
 ```powershell
 ```
+Retrieve a user, send a GET request to the API:
+```diff
+- INSERT CMD from Confluence!
+```
 
+```powershell
+```
 
 
 
