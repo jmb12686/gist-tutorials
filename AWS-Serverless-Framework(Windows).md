@@ -20,7 +20,7 @@ Note: This step could be skipped if NodeJS / npm are already present and meet mi
   1. Install serverless cli module.  This may take quite some time depending on the level of corporate spyware present on your machine:
       * `npm install -g serverless`
 ### AWS Account setup
-  If you do not already have an AWS Account, you can sign up for a [free trial] (https://aws.amazon.com/s/dm/optimization/server-side-test/free-tier/free_np/).  AWS permits a generous 1 Million Lambda function invocations / month for free **indefinitely**.  This offer is available to both existing and new customers.  
+  If you do not already have an AWS Account, you can sign up for a [free trial](https://aws.amazon.com/s/dm/optimization/server-side-test/free-tier/free_np/).  AWS permits a generous 1 Million Lambda function invocations / month for free **indefinitely**.  This offer is available to both existing and new customers.  
 
 
 
