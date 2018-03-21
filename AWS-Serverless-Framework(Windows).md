@@ -142,7 +142,7 @@ For additional information on the framework, the concepts, and features:
 # Troubleshooting
 
 ## Network timeout / errors from serverless CLI
-This most likely is an indication that you are on a corporate network and the HTTP/HTTPS proxies need to be set in your shell / env.  In Powershell:
+This most likely is an indication that you are on a corporate network and the HTTP/HTTPS proxies need to be set in your.  In Powershell:
 ```powershell
 >  $env:HTTP_PROXY = 'PROXY_URL'
 >  $env:HTTPS_PROXY = 'PROXY_URL'
