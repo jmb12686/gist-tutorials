@@ -99,11 +99,18 @@ Now, Deploy time:
 ```powershell
 > serverless deploy
 ```
-blah 
-```html
-<span style="background-color: #FFFF00">Yellow text.</span>
+```diff
+- ADD Command Output from confluence notes!
 ```
-blah
+
+You can now invoke your Lambda endpoint by navigating to the URL (or using cURL, Postman, etc) displayed in your deploy output:
+```diff
+- ADD screen shots from confluence
+```
+
+Tada - You now have deployed a live serverless application!
+
+
 
 # Extra Guides
 TODO
