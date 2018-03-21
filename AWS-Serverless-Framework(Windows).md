@@ -65,7 +65,8 @@ module.exports.handler = serverless(app);
 
 Express routing behaves similar to non serverless environments and builds on relative path exposed by AWS API Gateway.
 
-Last but not least, create a `serverless.yml` file.  This serves as the configuration file to drive the Serverless CLI:
+Last but not least, create a `serverless.yml` file.  This serves as the configuration file to drive the Serverless CLI.  The configuration details within the file represent your high-level **Infrastructure as Code**.  More on this later, but simple, concise config parameters here drive the creation and of an AWS CloudFormation template.  CloudFormation Templates serve as your lower-level AWS **Infrastructure as Code** and can be rather esoteric.
+
 ```yml
 # serverless.yml
 
@@ -84,7 +85,14 @@ functions:
       - http: ANY /
       - http: 'ANY {proxy+}'
 ```
-The configuration details within the file represent your high-level **Infrastructure as Code**.  More on this later, but simple, concise config parameters here drive the creation and of an AWS CloudFormation template.  CloudFormation Templates serve as your lower-level AWS **Infrastructure as Code** and can be rather esoteric.   
+
+At this point, the configuration defines a single function `app` and a Javascript function defined and exported in `index.js`.  This is the main entry point for Lambda triggers.  The function will be triggerd by HTTP Events (AWS API Gateway).  The broad url path matching here essentially delegates all routing to the express app.  However, complex confuration and API creation can be described directly within the `serverless.yml` config file.
+
+Now, Deploy time:
+```powershell
+> serverless deploy
+```
+
 
 # Extra Guides
 Additional guides can be found on serverless.com that demonstrate the power and flexiblity of the framework.  [Here](https://serverless.com/blog/serverless-express-rest-api/), you can easily deploy a simple REST API with two endpoints via expressjs and perform CRUD like operations against a DynamoDB store.
