@@ -122,13 +122,73 @@ You can delete your serverless application and all resources provisioned by the 
 >  serverless remove
 ```
 ## Extra Credit - DynamoDB and RESTful API 
+Enhancing functionality of the 'hello-world' express serverless app by adding a "RESTful" API will be demonistrated here.  To provision a DynamoDB table, the `serverless.yml` configuration will require three additions:
+ 1. Provision the Dynamo in the `resources` section.  This section allows you to include raw CloudFormation YAML template syntax. 
+ 2. Add the requisite IAM permissions to the Lambda IAM Role.  This permits the Lambda function to access DynamoDB.
+ 3. Pass the DynamoDB table name as an environment variable.  This will allow reusability.
+ 
+The resulting `serverless.yml` becomes:
+```yml
+# serverless.yml
 
+service: express-app
 
-It's relatively simple to demonstrate a RESTful API backed by a DynamoDB data store. 
-WIP!
+custom:
+  tableName: 'users-table-${self:provider.stage}'
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
+  environment:
+    USERS_TABLE: ${self:custom.tableName}
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+resources:
+  Resources:
+    UsersDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: userId
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: userId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}
+``` 
+ 
+Install a few helper libraries via npm.  `aws-sdk` client sdk will be used to access DynamoDB, and `body-parser` will facilitate HTTP request body processing:
+```powershell
+> npm install --save aws-sdk body-parser
+```
+
 
 ## Customization
-The Serverless Framework provides out-of-the box support for provisioning many additional AWS services.  Fine grained control over provisioned resources is available such as defining Lambda memory settings, concurrent priviusioned capacity, DynamoDB provisioned throughput settings, IAM policies, etc.  Customization is achieved thru a modular plugin system or by injecting raw AWS CloudFormation JSON directly into the serverless config yml.
+The Serverless Framework provides out-of-the box support for provisioning many additional AWS services.  Fine grained control over provisioned resources is available such as defining Lambda memory settings, concurrent provisioned capacity, DynamoDB provisioned throughput settings, IAM policies, etc.  Customization is achieved thru a modular plugin system or by injecting raw AWS CloudFormation JSON directly into the serverless config yml.
 
 ## Additional Documentation and Resources
 For additional information on the framework, the concepts, and features:
