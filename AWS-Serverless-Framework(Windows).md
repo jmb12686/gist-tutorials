@@ -268,7 +268,7 @@ Redeploy the app:
 
 
 ## Customization
-The Serverless Framework provides out-of-the box support for provisioning some AWS services, but this mainly serves the purpose of abstracting away the details of Lambda + API Gateway.  Fine grained control over your entire AWS Environment is possible by utilizing the `resources` section, and including raw CloudFormation YAML.  In this context, Serverless Framework serves as more of a build and deploy tool, facilitating process of deployment.
+The Serverless Framework provides out-of-the box support for provisioning some AWS services, but this mainly serves the purpose of abstracting away the details of Lambda + API Gateway.  Fine grained control over your entire AWS Environment is possible by utilizing the `resources` section, and including raw CloudFormation YAML.  In this context, Serverless Framework serves as more of a build and deploy tool, facilitating process of deployment.  This is in contrast to opinionated development frameworks.  
 
 Additional customization of the framework itself is enabled thru the plugin system.
 
