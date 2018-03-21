@@ -103,6 +103,15 @@ Now, Deploy time:
 
 # Extra Guides
 Additional guides can be found on serverless.com that demonstrate the power and flexiblity of the framework.  [Here](https://serverless.com/blog/serverless-express-rest-api/), you can easily deploy a simple REST API with two endpoints via expressjs and perform CRUD like operations against a DynamoDB store.
+
+#Troubleshooting
+
+## Network timeout / errors in serverless framework CLI
+This most likely is an indication that you are on a corporate network and the HTTP/HTTPS proxies need to be set in your shell / env.  In Powershell:
+```powershell
+>  $env:HTTP_PROXY = 'PROXY_URL'
+>  $env:HTTPS_PROXY = 'PROXY_URL'
+```
 #### TODO 
 
 #### TODO CLEANUP 
