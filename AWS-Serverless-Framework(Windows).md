@@ -265,6 +265,19 @@ Redeploy the app:
 ```powershell
 >  serverless deploy
 ```
+Capture the resulting endpoint API URL, and store it in an env variable for future use:
+```powershell
+>  $env:SERVERLESS_URL = 'https://t1zobfla26.execute-api.us-east-1.amazonaws.com/dev'
+```
+In Powershell, the 'curl' command is by default aliased to the 'Invoke-WebRequest' utility.  For consistency, we will invoke the API with Powershell-native Invoke-WebRequest.  To Create a User, send a POST request:
+```diff
+- INSERT CMD from Confluence!
+```
+
+```powershell
+```
+
+
 
 
 ## Customization
