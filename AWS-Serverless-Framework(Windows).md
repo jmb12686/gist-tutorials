@@ -47,7 +47,7 @@ Install a few dependencies.  The `express` framework and [`serverless-http`](htt
 ```
 The `serverless-http` module servers as the "glue" between the Node.js app and the AWS API Gateway.
 
-Next, create an `index.js` file and expose an Express Route :
+Next, create an `index.js` file and expose a basic Express Route :
 
 ```javascript
 // index.js
@@ -62,6 +62,10 @@ app.get('/', function (req, res) {
 
 module.exports.handler = serverless(app);
 ```
+
+Express routing behaves similar to non serverless environments and builds on relative path exposed by AWS API Gateway.
+
+Last but not least, create a `serverless.yml` file.  This serves as the configuration file to drive the Serverless CLI.  The configuration details within the file represent your high-level **Infrastructure as Code**.  More on this later, but simple out-of-the-box config parameters here drive the creation and of an AWS CloudFormation script.  
 
 # Extra Guides
 Additional guides can be found on serverless.com that demonstrate the power and flexiblity of the framework.  [Here](https://serverless.com/blog/serverless-express-rest-api/), you can easily deploy a simple REST API with two endpoints via expressjs and perform CRUD like operations against a DynamoDB store.
