@@ -33,13 +33,18 @@ Unfortunately, the official Serverless Framework documentation does not publish 
 I spent the better part of a week, starting off with a IAM user with zero access policies, iterating thru serverless framework deploy -> debug access control failure -> add IAM permission policy loops.  Ultimately I was unable to successfully deploy even the most simple Serverless Framework app without comprimising security standards.  This finding, in and of iteself, raises concerns over the viability of the Serverless Framework and usage within secure, enterprise applications.
 
 ## Creating and Deploying a simple REST API
-First create a new directory and init npm (or hand craft a package.json):
+First create a new directory and init npm (or hand craft a `package.json`):
 
 ```powershell
 > mkdir express-app ; cd express-app
 > npm init -f
 ```
 
+Install a few dependencies.  The `express` framework and [`serverless-http`](https://github.com/dougmoscrop/serverless-http).  This combination of modules will provide a very similar experience to hosted Node.js + express apps:
+
+```powershell
+> npm install --save express serverless-http
+```
 
 
 # Extra Guides
