@@ -99,10 +99,10 @@ Now, Deploy time:
 ```powershell
 > serverless deploy
 ```
-
+<span style="background-color: #FFFF00">Marked text</span>
 
 # Extra Guides
-Additional guides can be found on serverless.com that demonstrate the power and flexiblity of the framework.  [Here](https://serverless.com/blog/serverless-express-rest-api/), you can easily deploy a simple REST API with two endpoints via expressjs and perform CRUD like operations against a DynamoDB store.
+TODO
 
 # Troubleshooting
 
