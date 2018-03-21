@@ -52,7 +52,7 @@ Install a few dependencies.  The `express` framework and [`serverless-http`](htt
 ```powershell
 > npm install --save express serverless-http
 ```
-The `serverless-http` module servers as the "glue" between the Node.js app and the AWS API Gateway.
+The `serverless-http` module acts as the "glue" between the Node.js application code and the AWS API Gateway.  
 
 Next, create an `index.js` file and expose a basic Express Route :
 
@@ -108,7 +108,7 @@ You can now invoke your Lambda endpoint by navigating to the URL (or using cURL,
 - ADD screen shots from confluence
 ```
 
-Tada - You now have deployed a live serverless application!
+Tada - You have gone serverless!
 
 ## Redeploying
 You can iteratively develop, deploy, and test your application simply by making changes in your local environment and executing a deploy:
@@ -122,7 +122,22 @@ You can delete your serverless application and all resources provisioned by the 
 >  serverless remove
 ```
 ## Extra Credit - DynamoDB and RESTful API 
-The Serverless Framework provides out-of-the box support for provisioning additional AWS services such as DynamoDB tables, 
+
+
+It's relatively simple to demonstrate a RESTful API backed by a DynamoDB data store. 
+WIP!
+
+## Customization
+The Serverless Framework provides out-of-the box support for provisioning many additional AWS services.  Fine grained control over provisioned resources is available such as defining Lambda memory settings, concurrent priviusioned capacity, DynamoDB provisioned throughput settings, IAM policies, etc.  Customization is achieved thru a modular plugin system or by injecting raw AWS CloudFormation JSON directly into the serverless config yml.
+
+## Additional Documentation and Resources
+For additional information on the framework, the concepts, and features:
+* [Official Serverless Framework Documentation](https://serverless.com/framework/docs/)
+* [Official Enterprise Vendor Support](https://serverless.com/enterprise/)
+* [Blog](https://serverless.com/blog/)
+* [Official Community Forums](https://forum.serverless.com/)
+* [Github Repo](https://github.com/serverless/serverless)
+
 
 # Troubleshooting
 
@@ -133,3 +148,4 @@ This most likely is an indication that you are on a corporate network and the HT
 >  $env:HTTPS_PROXY = 'PROXY_URL'
 ```
  
+
