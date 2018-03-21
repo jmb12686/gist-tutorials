@@ -45,7 +45,23 @@ Install a few dependencies.  The `express` framework and [`serverless-http`](htt
 ```powershell
 > npm install --save express serverless-http
 ```
+The `serverless-http` module servers as the "glue" between the Node.js app and the AWS API Gateway.
 
+Next, create an `index.js` file and expose an Express Route :
+
+```javascript
+// index.js
+
+const serverless = require('serverless-http');
+const express = require('express')
+const app = express()
+
+app.get('/', function (req, res) {
+  res.send('Hello World')
+})
+
+module.exports.handler = serverless(app);
+```
 
 # Extra Guides
 Additional guides can be found on serverless.com that demonstrate the power and flexiblity of the framework.  [Here](https://serverless.com/blog/serverless-express-rest-api/), you can easily deploy a simple REST API with two endpoints via expressjs and perform CRUD like operations against a DynamoDB store.
