@@ -72,7 +72,7 @@ module.exports.handler = serverless(app);
 
 Express routing behaves similar to non serverless environments and builds on relative path exposed by AWS API Gateway.
 
-Last but not least, create a `serverless.yml` file.  This serves as the configuration file to drive the Serverless CLI.  The configuration details within the file represent your high-level **Infrastructure as Code**.  More on this later, but simple, concise config parameters here drive the creation and of an AWS CloudFormation template.  CloudFormation Templates serve as your lower-level AWS **Infrastructure as Code** and can be rather esoteric.
+Last but not least, create a `serverless.yml` file.  This serves as the configuration file to drive the Serverless CLI.  The configuration details within the file represent your high-level **Infrastructure as Code**.  More on this later, but simple, concise config parameters here drive the creation and of an AWS CloudFormation Stack file.  CloudFormation serve as your lower-level AWS **Infrastructure as Code** and can be rather esoteric.
 
 ```yml
 # serverless.yml
