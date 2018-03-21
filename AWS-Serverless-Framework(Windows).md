@@ -99,7 +99,8 @@ Now, Deploy time:
 ```powershell
 > serverless deploy
 ```
-blah ```html
+blah 
+```html
 <span style="background-color: #FFFF00">Yellow text.</span>
 ```
 blah
