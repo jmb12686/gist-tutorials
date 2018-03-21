@@ -25,6 +25,13 @@ Note: This step could be skipped if NodeJS / npm are already present and meet mi
 ### 6.  Set-up Cloud Provider Credentials.
 There are a number of ways this can be achieved, but in general, AWS best practices recommend that you create a new IAM Users specifically for granting access to AWS resources, and follow security best practices of granting the least privledges necessary for the task.  If you are unfamiliar with these concepts, the Serverless framework documentation has a [step-by-step guide](https://serverless.com/framework/docs/providers/aws/guide/credentials/) and a [video on setting up credentials](https://www.youtube.com/watch?v=HSd9uYj2LJA)
 
+For quick reference, set AWS credentials temporarily that live only for the length of the Powershell session:
+```powershell
+>  $env:AWS_ACCESS_KEY_ID = 'abcd'
+>  $env:AWS_SECRET_ACCESS_KEY = 'wyxz'
+```
+
+
 #### Security Concerns and Analysis
 In order to follow industry security best practices, AWS Security best practices, and the AWS Well Architected Framework, one must provision a new IAM user specifically for the task of granting access to the Serverless Framework.   This user should only be granted the **bare minimum** level of access control, permissions, and policies within the AWS account.  This is generally regarded as the [Principal of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) and is a fundamental concept in designing secure systems.
 
