@@ -39,7 +39,7 @@ Unfortunately, the official Serverless Framework documentation does not publish 
 
 I spent the better part of a week, starting off with a IAM user with zero access policies, iterating thru serverless framework deploy -> debug access control failure -> add IAM permission policy loops.  Ultimately I was unable to successfully deploy even the most simple Serverless Framework app without comprimising security standards.  This finding, in and of iteself, raises concerns over the viability of the Serverless Framework and usage within secure, enterprise applications.
 
-## Creating and Deploying a simple REST API
+## Creating and Deploying a simple API
 First create a new directory and init npm (or hand craft a `package.json`):
 
 ```powershell
@@ -110,21 +110,26 @@ You can now invoke your Lambda endpoint by navigating to the URL (or using cURL,
 
 Tada - You now have deployed a live serverless application!
 
+## Redeploying
+You can iteratively develop, deploy, and test your application simply by making changes in your local environment and executing a deploy:
+```powershell
+>  serverless deploy
+```
 
-
-# Extra Guides
-TODO
+## Cleanup / Teardown
+You can delete your serverless application and all resources provisioned by the Severless Framework by executing:
+```powershell
+>  serverless remove
+```
+## Extra Credit - DynamoDB and RESTful API 
+The Serverless Framework provides out-of-the box support for provisioning additional AWS services such as DynamoDB tables, 
 
 # Troubleshooting
 
-## Network timeout / errors in serverless framework CLI
+## Network timeout / errors from serverless CLI
 This most likely is an indication that you are on a corporate network and the HTTP/HTTPS proxies need to be set in your shell / env.  In Powershell:
 ```powershell
 >  $env:HTTP_PROXY = 'PROXY_URL'
 >  $env:HTTPS_PROXY = 'PROXY_URL'
 ```
-#### TODO 
-
-#### TODO CLEANUP 
-- >Launch a shell with elevated privileges (Ctrl + Win key -> type 'Powershell' -> right click -> Run as Administrator -> enter adminstrator credentials)
  
