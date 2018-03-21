@@ -32,16 +32,15 @@ Unfortunately, the official Serverless Framework documentation does not publish 
 
 I spent the better part of a week, starting off with a IAM user with zero access policies, iterating thru serverless framework deploy -> debug access control failure -> add IAM permission policy loops.  Ultimately I was unable to successfully deploy even the most simple Serverless Framework app without comprimising security standards.  This finding, in and of iteself, raises concerns over the viability of the Serverless Framework and usage within secure, enterprise applications.
 
-## Create a new Service
-Create a new 'Service' using the simple AWS Node.js template.  You must specify a unique name for your service and can optionally provide a sub path/directory to be created. 
+## Creating and Deploying a simple REST API
+First create a new directory and init npm (or hand craft a package.json):
 
-In your shell of choice:
-```bash
-# Create a new Serverless Service/Project
-$ serverless create --template aws-nodejs --path my-first-service
-# Change into the newly created directory
-$ cd my-first-service
+```powershell
+> mkdir express-app ; cd express-app
+> npm init -f
 ```
+
+
 
 # Extra Guides
 Additional guides can be found on serverless.com that demonstrate the power and flexiblity of the framework.  [Here](https://serverless.com/blog/serverless-express-rest-api/), you can easily deploy a simple REST API with two endpoints via expressjs and perform CRUD like operations against a DynamoDB store.
