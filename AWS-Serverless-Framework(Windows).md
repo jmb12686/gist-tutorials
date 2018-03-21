@@ -15,8 +15,8 @@ Note: This step could be skipped if NodeJS / npm are already present and meet mi
   3. Ensure version of node is **at least** v6.5.0 or later.  If not, re-install latest LTS distribution.
 ### Install the Serverless CLI
   1. Set npm proxy if on corporate network machine.  Execute the following commands (be sure to substitute $PROXY_HOST as necessary):
-      `npm config set https-proxy http://$PROXY_HOST:8080/`
-      `npm config set proxy http://$PROXY_HOST:8080/`
+      * `npm config set https-proxy http://$PROXY_HOST:8080/`
+      * `npm config set proxy http://$PROXY_HOST:8080/`
   2. Install serverless cli module:
       `npm install -g serverless`
   
