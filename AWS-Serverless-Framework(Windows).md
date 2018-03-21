@@ -125,7 +125,7 @@ You can delete your serverless application and all resources provisioned by the 
 Enhancing functionality of the 'hello-world' express serverless app by adding a "RESTful" API will be demonistrated here.  To provision a DynamoDB table, the `serverless.yml` configuration will require three additions:
  1. Provision the Dynamo in the `resources` section.  This section allows you to include raw CloudFormation YAML template syntax. 
  2. Add the requisite IAM permissions to the Lambda IAM Role.  This permits the Lambda function to access DynamoDB.
- 3. Pass the DynamoDB table name as an environment variable.  This will allow reusability.
+ 3. Pass the DynamoDB table name as an environment variable to Lambda.  This tactic allows reusability and modularity.
  
 The resulting `serverless.yml` becomes:
 ```yml
@@ -186,9 +186,91 @@ Install a few helper libraries via npm.  `aws-sdk` client sdk will be used to ac
 > npm install --save aws-sdk body-parser
 ```
 
+Add a GET and POST route to `index.js`:
+```javascript
+// index.js
+
+const serverless = require('serverless-http');
+const bodyParser = require('body-parser');
+const express = require('express')
+const app = express()
+const AWS = require('aws-sdk');
+
+
+const USERS_TABLE = process.env.USERS_TABLE; // This is the variable we setup in the serverless.yml.  Lambda env vars are in process.env
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
+
+app.use(bodyParser.json({ strict: false }));
+
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
+
+// Get User endpoint
+app.get('/users/:userId', function (req, res) {
+  const params = {
+    TableName: USERS_TABLE,
+    Key: {
+      userId: req.params.userId,
+    },
+  }
+
+  dynamoDb.get(params, (error, result) => {
+    if (error) {
+      console.log(error);
+      res.status(400).json({ error: 'Could not get user' });
+    }
+    if (result.Item) {
+      const {userId, name} = result.Item;
+      res.json({ userId, name });
+    } else {
+      res.status(404).json({ error: "User not found" });
+    }
+  });
+})
+
+// Create User endpoint
+app.post('/users', function (req, res) {
+  const { userId, name } = req.body;
+  if (typeof userId !== 'string') {
+    res.status(400).json({ error: '"userId" must be a string' });
+  } else if (typeof name !== 'string') {
+    res.status(400).json({ error: '"name" must be a string' });
+  }
+
+  const params = {
+    TableName: USERS_TABLE,
+    Item: {
+      userId: userId,
+      name: name,
+    },
+  };
+
+  dynamoDb.put(params, (error) => {
+    if (error) {
+      console.log(error);
+      res.status(400).json({ error: 'Could not create user' });
+    }
+    res.json({ userId, name });
+  });
+})
+
+module.exports.handler = serverless(app);
+```
+The resulting REST API will have the following additional endpoints:
+* `GET /users/:userId` to query and retireve a User
+* `POST /users` to create a new User
+
+Redeploy the app:
+```powershell
+>  serverless deploy
+```
+
 
 ## Customization
-The Serverless Framework provides out-of-the box support for provisioning many additional AWS services.  Fine grained control over provisioned resources is available such as defining Lambda memory settings, concurrent provisioned capacity, DynamoDB provisioned throughput settings, IAM policies, etc.  Customization is achieved thru a modular plugin system or by injecting raw AWS CloudFormation JSON directly into the serverless config yml.
+The Serverless Framework provides out-of-the box support for provisioning some AWS services, but this mainly serves the purpose of abstracting away the details of Lambda + API Gateway.  Fine grained control over your entire AWS Environment is possible by utilizing the `resources` section, and including raw CloudFormation YAML.  In this context, Serverless Framework serves as more of a build and deploy tool, facilitating process of deployment.
+
+Additional customization of the framework itself is enabled thru the plugin system.
 
 ## Additional Documentation and Resources
 For additional information on the framework, the concepts, and features:
