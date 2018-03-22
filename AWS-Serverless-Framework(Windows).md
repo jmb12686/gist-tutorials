@@ -52,7 +52,7 @@ Install a few dependencies.  The `express` framework and [`serverless-http`](htt
 ```powershell
 > npm install --save express serverless-http
 ```
-The `serverless-http` module acts as the "glue" between the Node.js application code and the AWS API Gateway.  
+`serverless-http` is http middleware, and handles the communication layer between our application code and the AWS API Gateway.  
 
 Next, create an `index.js` file and expose a basic Express Route :
 
